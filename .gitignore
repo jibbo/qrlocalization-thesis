@@ -91,3 +91,4 @@ sympy-plots-for-*.tex/
 #osx
 .DS_Store
 .directory
+*.pdf

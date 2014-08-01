@@ -1,16 +1,30 @@
 \documentclass[a4paper,11pt,onside]{book}
 
-\usepackage{graphicx}     % to set the title_page image (university's logo)
+\usepackage{graphicx} % to set the title_page image (university's logo)
+\usepackage{cite}     
+
+%Automatically add contents
+\newcommand\chap[1]{
+  \chapter*{#1}
+  \addcontentsline{toc}{chapter}{\protect\numberline{}#1}}
 
 
-
-%\title{ sviluppo di un sistema di localizzazione per robot basato sul ricoscimento di codici qr.}
 \title{Development of localization system based on qr's recognition}
 \author{Giovanni De Francesco}
 
 \begin{document}
 	\input{front}
+  \input{dedication}
+  \frontmatter
   	\tableofcontents
-  	%\input{prefazione}  
+  \mainmatter
+    \input{chapter_1}
+    % \input{chapter_2}
+    % \input{chapter_3}
+    % \input{chapter_4}
+    % \input{chapter_5}
+    % \input{chapter_6}
+    % \input{conclusion}
   	%\bibliographystyle{biblio}
+  \input{acknowledgements}
 \end{document}
