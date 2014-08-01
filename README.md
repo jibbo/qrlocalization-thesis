@@ -6,7 +6,7 @@ Thesis for my bachelor degree
 To compile the source:
 ----------------------
 
-You'll need opencv and zbar and eigen3
+You'll need **opencv**,**zbar** and **eigen3**<br />
 Then, the Makefile should do the rest.
 
 How To-use it:
