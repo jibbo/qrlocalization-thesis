@@ -6,13 +6,14 @@
 *.fls
 *.out
 *.toc
+*.ini
 
 ## Intermediate documents:
 *.dvi
 # these rules might exclude image files for figures etc.
 # *.ps
 # *.eps
-# *.pdf
+*.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
@@ -91,4 +92,6 @@ sympy-plots-for-*.tex/
 #osx
 .DS_Store
 .directory
-*.pdf
+
+#linux
+*.*~
