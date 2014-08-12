@@ -10,7 +10,7 @@ building, and there are many solution available online which offer indoor
 GPS systems to try and buy.
 However this platforms are based on a triangulation of Wi-fi signals united a
 complete map of available hostspots.
-\footnote{Further info at:
+\footnote{Further info at: 
 \url{https://en.wikipedia.org/wiki/Wi-Fi_positioning_system}}
 These kind of systems are full-stack solution to the problem and don't have the
 necessary flexibility for the project's needs and, in addition, wi-fi hostspots 
@@ -18,8 +18,20 @@ aren't a possibility because the installation process would be a heavy burden
 for user.
 \newline
 The team developing the project thought to use some sort of computer readable 
-marker positioned inside the environment which contained the necessary information.
-    
+marker positioned inside the environment which contained the necessary information
+and from this decision derived the usage of QR Codes, which I studied and
+developed.
+
+\newpage
+\subsection{QR Code generalities}
+A QRCode is foundamentally an image containing an encoded binary matrix of data.
+According to the quantity of information which needs to be stored 
+%The matrix module is called "version" and it adds 4 bits at each step from a
+%minumimum of 21x21 to a maximum of 177x177 according to the information 
+%length which has to be stored, until a maximimum of 23648 bits.
+
+\footnote{with an L level or error correction}
+\footnote{complete table at: \url{http://www.qrcode.com/en/about/version.html}}    
 
 
 
