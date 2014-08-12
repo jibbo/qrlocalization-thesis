@@ -23,16 +23,29 @@ and from this decision derived the usage of QR Codes, which I studied and
 developed.
 
 \newpage
-\subsection{QR Code generalities}
-A QRCode is foundamentally an image containing an encoded binary matrix of data.
-According to the quantity of information which needs to be stored 
-%The matrix module is called "version" and it adds 4 bits at each step from a
-%minumimum of 21x21 to a maximum of 177x177 according to the information 
-%length which has to be stored, until a maximimum of 23648 bits.
+\subsection{QR Code quick generalities}
+A QRCode is foundamentally an image containing an encoded binary matrix of data which displays like:
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[scale=0.5]{img/qr.png}
+\end{figure}
 
-\footnote{with an L level or error correction}
-\footnote{complete table at: \url{http://www.qrcode.com/en/about/version.html}}    
+There are 41 versions of it and they differ from each other by their matrix 
+module size which is fixed for each version and ranges from a minimum of 21x21 
+to a maximum of 177x177. This allows to save up to 23648 bits.\footnote{with an L level or error correction}\footnote{complete table at: \url{http://www.qrcode.com/en/about/version.html}} 
+\newline 
+In addition, the encoding algorithm\footnote{ according to: \url{http://raidenii.net/files/datasheets/misc/qr_code.pdf}} offers the opportunity of error correction through the usage of Reed-Solomon codes.
+These codes are also stored inside the QR Code and the there are four levels of error recovering which can be choosen by the user according to the operating environment.
+In fact, each level increases its capability of restoring data but also require more space on the QR Code's matrix in order to work. 
+\newpage
+To simplify the above description here's a summarying table:
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[scale=0.9]{img/qrversion.png}
+\end{figure}
 
+
+   
 
 
 
