@@ -4,6 +4,32 @@
 \usepackage{url}
 \usepackage{cite}     % bibliography
 
+\usepackage{listings} % makes code look good
+\usepackage{color}    % for syntax highlight
+
+% this part defines how to do syntax highlight
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=C++,
+  aboveskip=0mm,
+  belowskip=0mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+%end syntax highlight
+
 %Automatically add contents
 \newcommand\chap[1]{
   \chapter*{#1}

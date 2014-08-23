@@ -51,8 +51,41 @@ The whole code is free-software because it is licensed with MPLv2 and it is base
 \section{Other algorithms}
 
 \subsection{Rectification}
-The image rectification process removes the perspective and corrects distortion inside an image.
-This method creates a new flat image as shown in the figures below:
+The rectification process removes the perspective and corrects distortion inside a picture by creating a new virtual image which contains every pixel from the first on their right position, minus pixels which goes out of the boundaries.
+The new position of each pixel is found using linear transformation and adjusted with the focal length of the camera.
+In order to simplify the concept, the following pseudo-code shows the general algorithm.
+
+\vspace{1cm}
+\begin{lstlisting}
+void rectification(constant Camera c_real, Camera c_virtual)
+{
+    setupVirtualCamera(c_virtual);
+    image_x_distortion_correction = linear_transformation(c_real.image.center.x,c_virtual.image.center.x);
+    image_y_distortion_correction = linear_transformation(c_real.image.center.y,c_virtual.image.center.y);
+    focal_correction = focal_distance(c_real.focal,c_virtual.focal);
+    for (int i = 0; i < c_real.image.pixels.length ; i++)
+    {
+		
+		oldX =  c_real.image.pixels[i].x
+		            +image_x_distortion_correction
+		            +focal_correction;
+		oldY =  c_real.image.pixels[i].y
+		            +image_y_distortion_correction
+		            +focal_correction;
+		
+		/* compute the focal distance in order to find the point */
+		newY = computeY(oldX,c_real.focal,c_virtual.focal);
+		newX = computeX(oldY,c_real.focal,c_virtual.focal);
+		
+		if( isOutOfVirtualBound(newX,newY)) then continue;
+		
+		writePixel(c_virtual.image,
+		     c_real.image.pixels[i],newX,newY);
+		     
+    }
+
+}
+\end{lstlisting}
 
 \begin{figure}[hbt] 
     \centering
