@@ -1,28 +1,11 @@
 \chapter{General problem description}
-
-\vspace{6cm}
-In order to build the new rollator with the capability of giving directions to
-the user and make him less ascared of unfamiliar places there are the following
-two problems to solve.
-\newpage
-
-\section{Indoor positioning system}
-The first problem encountered is the localization of the elder inside a
-building, which is also the core of this thesis.
-Solutions are currently being investigated by both researchers and companies, in fact there are many systems available online which offer indoor 
-GPS systems to try and buy which are based on the triangulation of Wi-fi signals connected with a
-complete map of available hostspots around the user.
-\footnote{Further info at: 
-\url{https://en.wikipedia.org/wiki/Wi-Fi_positioning_system}}
-These kind of systems are full-stack solutions to the problem and don't have the
-necessary flexibility for the project's needs.
-The possibility to develop our own version of Wi-Fi triangulation is also out of reach for two main reasons:
-this system is too imprecise for the project's purpose and the installation process of Wireless hotspots would be a heavy burden for the final user.
+Indoor tracking is a very complex matter because the common GPS system is unvailable due to the fact that satellite signals are often absent or very imprecise inside buildings.
+From that very fact came the need to research other resources that coud provide location.
+In fact many research labs and companies are developing solutions based on Wi-Fi signals triangulation although this kind of systems are too imprecise for our purpose due too many facts, such as: signal loss,latency, continuos connect and disconnect from a range of Wi-fi hotspots in order to measure the singal intesity.
+In addition, a wireless solution will impact the autonomy of the device and the installation of Wi-Fi repetitors might be a burden for the final user.
 \newline
-The team developing the project thought to use some sort of computer readable 
-marker positioned inside the environment which contained the necessary information
-and from this decision derived the usage of QR Codes, which I studied and
-developed.
+A marker, which is basically a symbol, avoids all those problems although it brings another level of complexity by introducing other matters, such as: recognize of the symbol, how to read the data, quantity of information, where it should stand.
+All this problems plus some other will be analized in the folowing sections.
 
 \subsection{QR Code quick generalities}
 A QRCode is foundamentally an image containing an encoded binary matrix of data which displays like:
