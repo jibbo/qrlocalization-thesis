@@ -3,7 +3,7 @@
 
 #include "qrcode.h"
 
-const string IMG_FOLDER= "../test_img/";
+const string IMG_FOLDER= "../new_img_qr/";
 
 using namespace std;
 

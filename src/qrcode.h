@@ -7,6 +7,7 @@
 #include <vector>
 #include <string>
 #include <cmath>
+#include <iostream>
 
 #include "imageloader.hpp"
 #include "image.hpp"
@@ -20,8 +21,8 @@ class QrCode
               float camera_height, float camera_x, float camera_y,
               float virtual_camera_angle, float virtual_camera_height,
               float virtual_camera_x, float virtual_camera_y);
-      // QrCode(zbar::Image::SymbolIterator symbol);
-      // QrCode(zbar::Image::SymbolIterator symbol,bool rotated);
+      QrCode(zbar::Image::SymbolIterator symbol);
+      QrCode(zbar::Image::SymbolIterator symbol,bool rotated);
       double get_angle();
       int get_quadrant();
       cv::Point get_center();
@@ -33,7 +34,6 @@ class QrCode
       std::vector<cv::Point> points;
       bool rotated;
       double angle;
-      int quadrant;
       cv::Point center;
       float* mcenter;
       std::string data;
@@ -51,14 +51,17 @@ class QrCode
       
       zbar::Image *get_image(cv::Mat frame);
       vector<zbar::Image::SymbolIterator> get_read_symbols(zbar::Image *img);
+      vector<zbar::Image::SymbolIterator> searchQrCode();
+      cv::Point rectifyPoint(cv::Point p);
       void rotate(cv::Mat& src, cv::Mat& dst, double angle);
       void filter(Mat& src,Mat& dest,int threeshold);
       void rectify(Mat& src,Mat& dest);
-      vector<zbar::Image::SymbolIterator> searchQrCode();
       void initialize(zbar::Image::SymbolIterator symbol);
-      void compute_points(zbar::Image::SymbolIterator symbol);
-      void compute_quadrant();
-      void compute_shape();
+      void compute_points(zbar::Image::SymbolIterator symbol);;
+      void compute_angle();
+      void compute_center();
       void compute_center_in_meters();
+      void initializeCameras();
+      
 };
 #endif
