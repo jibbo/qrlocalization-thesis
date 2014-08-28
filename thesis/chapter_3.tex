@@ -1,21 +1,23 @@
 \chapter{Tools}
 \vspace{6cm}
-Developing this kind of systems is extremely complex, as can be seen from the above analysis, but it would be a lot harder without algorithms and libraries made by other people.
-In order to make our solution clearer and honor their work, in the following paragraphs I will briefly describe all the tools used by our project.
+Developing this kind of systems is extremely complex, but it would be a lot harder without algorithms and libraries made by other people.
+In order to make our solution clearer and honor their work, in the following paragraphs I will briefly describe all the tools used by the project.
 \newpage
 
 \section{Language}
-Every algorithm is implemented in C++ and all the used libraries bindings are also in that same language because performance is a must for these situations.   
+Every algorithm is implemented in C++ and all the used libraries bindings are also in the same language due to the fact that the system has to be performance driven. However, the proposed solution can be implemented with little modifications in other languages such as Java and Python, but, because we wanted to make the system run in embedded environments with limited resources such as a Beaglebone, C++ is a better fit.        
 
 \section{Developing environment}
-A common laptop with the following specifications:
+The environment used for the development is more powerful than the one which will be used in a real application. This is due to the fact that the rollator doesn't still have a specific requirement but, instead, it is being deducted from experiments on the field. In addition, one of the purpose of the thesis is to proof that using this kind of systems is possible. Therefore, even if the system will not be able to run on a Beaglebone now, in a couple of years it should work without any problem.
+\newline 
+Moreover, a common laptop with the following specifications has been used:
 \begin{itemize}
   \item A 2,5 GHz Intel core i7 processor
   \item 8gb of RAM
   \item Integrated graphic card
 \end{itemize}
-and Slackware Linux -current as Operating System.
-
+The chosen operating system is Slackware Linux -current (the current stable version is 14.1). This chose has been only made due to my familiarity with the OS but every GNU/Linux derivate which runs a version of the kernel later than version 2.6.32, because of the camera requirements, will be able to run the necessary software.
+In fact the system has been tried on Ubuntu Linux 14.04 and openSUSE 13.1 without any problem, in addition the system has been tried on a 2012 Macbook Pro with OSX Mavericks and showed any sign of malfunction. 
 
 \section{The camera}
 \begin{figure}[hbt]
@@ -27,24 +29,37 @@ and Slackware Linux -current as Operating System.
 \end{figure}
 
 In order to stream videos or take pictures a Playstation 3 Eye has been used.
-This camera can operate at 120Hz with a resolution of 320x240 pixels but we, instead, preferred to operate at 640x480 pixels with a frequency of 60Hz.
-The device is automatically recognized and used without issues if the version of the Linux Kernel installed is later than the version 2.6.32 .
+This camera can operate at 120Hz with a resolution of 320x240 pixels but we, instead, preferred to operate at 640x480 pixels with a frequency of 60Hz because of the better resolution of the image which grant better working possibilities. The device is automatically recognized and used without issues if the version of the Linux Kernel installed is later than the version 2.6.32, previous versions needs a patch which is available online.
+This camera was preferred because of its ability to stream uncompressed video directly \cite{pseyecompr}.
  
 
 \section{Libraries}
 
 \subsection{OpenCV}
-This is the library which empower almost any device with a camera to process images and videos allowing manipulations with consolidated algorithms created by universities and companies in order to let the developer focus on their own solution of a problem.
-In fact, OpenCV is the de facto standard for computer vision and it is wide-used in Sony Cameras for examples, but also on Android smartphones and iOS devices. 
+\begin{figure}[hbt]
+    \centering
+    \caption{OpenCV's Logo}
+    \includegraphics{img/opencv.png}
+\end{figure}
+This is the library which empower almost any device with a camera to process images and videos allowing manipulations with consolidated algorithms created by universities and companies in order to let the developer focus on their own solution of a problem. In fact, OpenCV is the de facto standard for computer vision and it is wide-used in many Samsung Cameras for example, but also on Android smartphones and iOS devices. 
 \newline Used version: \textbf{2.4.9}
 
 \subsection{ZBar}
-
-The capability of decoding a QRCode is given by the ZBar library, which is open source and can decode also other kind of markers, for example: EAN-13/UPC-A, UPC-E, EAN-8 and Code 128.In addition, it is able to decode from a multitude of sources such as still images, raw intensity sensors and not only from video streams as the project shows. At the core of this possibility there is a streamlined implementation of the \textbf{ISO/IEC 18004:2000} encoding/decoding RFC in C which is perfect for embedded purposes.
+\begin{figure}[hbt]
+    \centering
+    \caption{ZBar's Logo}
+    \includegraphics{img/zbar.png}
+\end{figure}
+The capability of decoding a QRCode is given by the ZBar library, which is open source and can decode also other kind of markers, for example: EAN-13/UPC-A, UPC-E, EAN-8 and Code 128.In addition, it is able to decode from a multitude of sources such as still images, raw intensity sensors and not only from video streams as the project shows. At the core of this possibility there is a streamlined C implementation of the \textbf{ISO/IEC 18004:2000} encoding/decoding standard which is perfect for embedded purposes.
 \newline Used version: \textbf{0.10}.
 
 \subsection{Eigen}
-This library provide abstractions and utilities for linear algebra such as numerical solvers but also matrices and related algorithms which are the very one used by our project.
+\begin{figure}[hbt]
+    \centering
+    \caption{Eigen's Logo}
+    \includegraphics{img/eigen.png}
+\end{figure}
+This library provide abstractions and utilities for linear algebra such as numerical solvers but also matrices and other subject-related algorithms.
 The whole code is free-software because it is licensed with MPLv2 and it is based on C++ templating system, in this way the developer can use only the needed header file which allows reasonable compilation time and flexibility.\cite{eigeninfo}
 \newline Used version: \textbf{3.2.1}.
 
