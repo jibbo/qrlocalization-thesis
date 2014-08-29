@@ -55,7 +55,6 @@ class QrCode
       cv::Point rectifyPoint(cv::Point p);
       void rotate(cv::Mat& src, cv::Mat& dst, double angle);
       void filter(Mat& src,Mat& dest,int threeshold);
-      void rectify(Mat& src,Mat& dest);
       void initialize(zbar::Image::SymbolIterator symbol);
       void compute_points(zbar::Image::SymbolIterator symbol);;
       void compute_angle();

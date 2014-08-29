@@ -1,23 +1,25 @@
 \chapter{The algorithm}
 
-I produced a class which abstracts a QRCode and defines various methods to access the desired properties. This class was declared in a .h file and implemented in .cpp file as the standards wants, in addition, the structure of this code is designed for the developer which will use it, because after the constructor call no other parameters are needed to make the algorithm work.
-In fact, after a QRCode object is instantiated the user can directly call all \textbf{get\textunderscore{}\emph{propertyname}()} methods and use their results for its own purposes.
+I produced a class which abstracts a QRCode and defines various methods to access the desired properties. This class was declared in a .h file and implemented in .cpp file as the standards wants, in addition, the structure of this code is designed with developers in mind.In fact after the constructor call, no other parameters are needed to make the class work and, after a QRCode object is instantiated, the user can directly call all \textbf{get\textunderscore{}\emph{propertyname}()} methods and use their results for its own purposes. However, this design, connected with the fact that the rectification algorithm requires many parameters, produced a pretty long constructor signature which is not very beautiful to see and use. However, even if the code has to run on embedded devices, the rest of the code tries to stay as elegant as possible because someone else could feel the need to understand and modify it.
+In addition the codebase concerning the algorithm implementation is very small and it counts about 360 lines of code. Although, all the testing and benchmarking software required more than one thousand additional lines of code.
 
 \section{ZBar's recognition improvement} 
-Any software is perfect and considering that ZBar is just at 0.10 version at the moment indicates how far from perfection is.
-However, for our purposes, its capability to recognize QRCode was just sufficient and needed some tuning in order to be used.
-My personal contribute to this aspect of the thesis was to think and code 6 incremental steps ,which can be found in the method named searchQRCode().
-This passages consists in different elaboration on the picture made before it is sent to the ZBar's API.
-In particular, these are all different tryings that the method does:
+No software is perfect and considering that ZBar is just at 0.10 version at the moment indicates how far from perfection is. Furthermore, for our purposes, its capability to recognize QRCode was just sufficient and needed some tuning in order to be used.To achieve this result, a great number of experiments was required and more than 400 pictures of QRCodes with different light conditions and angles has been taken. Moreover, this lead to the development of a process consisting in seven incremental steps which makes use of different elaborations on the picture before sending it to the ZBar's API.
+\newpage
+In particular, these are all different tryings that the method \textbf{searchQRCode()} does:
 
 \begin{enumerate}
 	\item The basic greyscale picture taken by the camera.
-	\item An image rotated by 180 degrees\footnote{ experiments have revealed that ZBar have some problem to recognize QRCodes inclined with an angle from 180 to 360 degrees.}.
+	\item An image rotated by 180 degrees
 	\item A only black and white image (called also: filter).
-	\item A rectified image\footnote{ it means that to the image was applied the rectification process.}.
-	\item A rectified and filtered image.
-	\item A rectified and rotated image.
-	\item A rectified, rotated and filtered image.
+	\item A rectified image
+	\item A rectified and filtered image
+	\item A rectified and rotated image
+	\item A rectified, filtered and rotated image.
 \end{enumerate}
 
+In our experiments on the last set of 220 images, ZBar alone was able to detect 142 QRCodes whilst the process lead to the recognition of 169. Moreover, the second passage helped in 8 cases, the third package in 11, the forth in 4 cases and the last passage on the other 4. In fact, we noticed that ZBar have some problem to recognize QRCodes inclined with an angle from 180 to 360 degrees.
+As can be seen, there are two problems in the process: steps five and six weren't useful and still 51 QRCodes couldn't be found. However, the first problem is there for the reason that those steps are sub-cases of the seventh try, and we suppose that under certain circumstances they could be helpful, instead, the reason behind the second problem was found by checking each image which showed it. Furthermore, the problem was that those markers were too far from the camera even if the photo could contain them.
+
+\section{}
 

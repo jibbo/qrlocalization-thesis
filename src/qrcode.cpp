@@ -42,7 +42,7 @@ QrCode::QrCode(Mat& picture, float focal, float camera_angle,
 //this method looks for qrcodes inside the image
 vector<Image::SymbolIterator> QrCode::searchQrCode()
 {
-    int trycont = 6;
+    int trycont = 3;
     vector<Image::SymbolIterator> symbols;
     bool rotated;
     Mat dest;
@@ -53,39 +53,18 @@ vector<Image::SymbolIterator> QrCode::searchQrCode()
     do
     {
         rotated=false;
-        cvtColor(picture, dest, CV_BGR2GRAY);
         Mat tmp =picture.clone(),tmp2 = picture.clone();
         switch(trycont)
         {
-            case 0:
-                rectify(picture,tmp); 
-                filter(tmp,tmp2,120);
-                rotate(tmp2,dest,180);
-                rotated = true;
-            break;
             case 1 :
-                rectify(picture,tmp);
-                rotate(tmp,dest,180);
-                rotated = true; 
-            break; 
-            case 2 :
-                rotated=false;
-                rectify(picture,tmp); 
-                filter(tmp,dest,120);
-            break;
-            case 3 :
-                rotated=false;
-                rectify(picture,dest);
-            break;
-            case 4 :
                 rotated=false;
                 filter(picture,dest,120);
             break;
-            case 5 :
+            case 2 :
                 rotate(picture,dest,180);
                 rotated = true;
             break;
-            case 6 :
+            case 3 :
                 dest = picture.clone();
             default:
             break;
@@ -169,44 +148,6 @@ void QrCode::filter(Mat& src,Mat& dest,int threeshold){
     }
 }
 
-//computes the rectification of all the Mat
-void  QrCode::rectify(Mat& src,Mat& dest)
-{
-
-    //prepare cameras
-    int width = picture.cols;
-    int height = picture.rows;
-    visuallocalization::Camera camera(width, height);
-
-    float roll = 0, pitch = 0, yaw = 0;
-    Eigen::Matrix<float, 3, 1> pos;
-
-    roll = -M_PI;
-    pitch = -(camera_angle * M_PI) / 180;
-    yaw = 0;
-    pos(0,0) = camera_x;
-    pos(1,0) = camera_y;
-    pos(2,0) = camera_height;
-    camera.setRotation(roll, pitch, yaw);
-    camera.setPosition(pos);
-    camera.setFocal(focal);
-
-    visuallocalization::Camera v_camera(width, height);
-
-
-    roll = -M_PI;
-    pitch = -(virtual_camera_angle * M_PI) / 180;
-    yaw = 0;
-    pos(0,0) = virtual_camera_x;
-    pos(1,0) = virtual_camera_y;
-    pos(2,0) = virtual_camera_height;
-    v_camera.setRotation(roll, pitch, yaw);
-    v_camera.setPosition(pos);
-    v_camera.setFocal(focal);
-
-    visuallocalization::Rectifier(camera,v_camera)
-        .rectification(camera, v_camera, src, dest);
-}
 
 //it computes the center in meter of the qrcode
 //giving it in real coordinates
