@@ -10,9 +10,9 @@ Every algorithm is implemented in C++ and all the used libraries bindings are al
 \section{Developing environment}
 A common laptop with the following specifications has been used:
 \begin{itemize}
-  \item A 2,5 GHz Intel core i7 processor
-  \item 8gb of RAM
-  \item Integrated graphic card
+  \item A 2,5 GHz Intel core i7 processor.
+  \item 8gb of RAM.
+  \item Integrated graphic card.
 \end{itemize}
 This configuration is more powerful than the one which will be used in a real application. This is due to the fact that the rollator doesn't still have specific requirements but, instead, they are being deducted from experiments on the field. In addition, one of the purpose of the thesis is to proof that using this kind of systems is possible. Therefore, even if the system will not be able to run on a Beaglebone now, in a couple of years it should work without any problem.The chosen operating system is Slackware Linux -current (the current stable version is 14.1). This chose has been only made due to my familiarity with the OS but every GNU/Linux derivate which runs a version of the kernel later than version 2.6.32, because of the camera requirements, will be able to run the necessary software.In fact the system has been tried on Ubuntu Linux 14.04 and openSUSE 13.1 without any problem, in addition the system has been tried on a 2012 Macbook Pro with OSX Mavericks and showed any sign of malfunction. 
 
@@ -25,7 +25,7 @@ This camera was preferred because of its ability to stream uncompressed video di
 \begin{figure}[hbt]
     \centering
     \includegraphics{img/pseye.png}
-    \caption{The Playstation Eye}
+    \caption{The Playstation Eye.}
 \end{figure}
  
 \newpage
@@ -35,7 +35,7 @@ This camera was preferred because of its ability to stream uncompressed video di
 \begin{figure}[hbt]
     \centering
     \includegraphics[scale=0.5]{img/opencv.png}
-    \caption{OpenCV's Logo}
+    \caption{OpenCV's Logo.}
 \end{figure}
 This library allows image manipulations and processing with consolidated algorithms created by universities and companies.In fact, OpenCV is the de facto standard for computer vision and it is wide-used in many Samsung Cameras, for example, but also on Android smart phones and iOS devices for human faces recognition.However, for our own purposes, the library free us of the burden to communicate with the web cam's hardware by giving APIs to open the streaming channel and taking pictures. In addition it gives us the opportunity to transform a colored image into a greyscale one which helps ZBar's QRCode recognition\footnote{see \textbf{chapter 5} for more information}and provides other methods to save our pictures in different formats and quality . 
 \newline Used version: \textbf{2.4.9}
@@ -44,7 +44,7 @@ This library allows image manipulations and processing with consolidated algorit
 \begin{figure}[hbt]
     \centering
     \includegraphics[scale=0.5]{img/zbar.png}
-    \caption{ZBar's Logo}
+    \caption{ZBar's Logo.}
 \end{figure}
 The capability of decoding a QRCode is given by the ZBar library, which is open source and can decode also other kind of markers, for example: EAN-13/UPC-A, UPC-E, EAN-8 and Code 128.In addition, it is able to decode from a multitude of sources such as still images, raw intensity sensors and not only from video streams as the project shows. At the core of this possibility there is a streamlined C implementation of the \textbf{ISO/IEC 18004:2000} encoding/decoding standard which is perfect for embedded purposes.
 The usage of its API is very simple because it abstracts all the hard work giving an ImageScanner class which returns the list containing all the found symbols. Each symbol is basically a recognized tag which I transform into a class of QRCode with all the necessary data that our system needs such as the center.
@@ -55,7 +55,7 @@ The usage of its API is very simple because it abstracts all the hard work givin
 \begin{figure}[hbt]
     \centering
     \includegraphics[scale=0.5]{img/eigen.png}
-    \caption{Eigen's Logo}
+    \caption{Eigen's Logo.}
 \end{figure}
 
 This library provide abstractions and utilities for linear algebra such as numerical solvers but also matrices and other subject-related algorithms.
@@ -68,10 +68,17 @@ This library is actually used by the rectification algorithm (which is explained
 
 \subsection{Rectification}
 The rectification process is able to remove perspective and correct distortion from a given picture with rototranslation and the usage of the focal length. The resulting image contains every pixel from the initial photo minus pixels which goes out of bounds. The usage of this algorithm is needed to correct the fact of the web cam which is positioned at a certain height and it is inclined with a certain angle towards the ground\footnote{see \textbf{chapter 5} for more information}. Therefore, any calculation about the center of an already read QRCode would be incorrect without a process which transform the image in a 2D Cartesian plane. In addition, our experiments showed that in certain circumstances the rectification algorithm also aids ZBar to recognize QRCodes\footnote{see the \textbf{results} section for further information}. 
-
-
-
-
+\vspace{1.25cm}
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[scale=0.3]{img/beforerect.png}
+    \caption{before rectification}
+\end{figure}
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[scale=0.3]{img/afterrect.png}
+    \caption{after rectification}
+\end{figure}
 
 
 

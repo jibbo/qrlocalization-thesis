@@ -1,3 +1,23 @@
 \chapter{The algorithm}
 
-I produced a class which abstracts a QRCode and defines various methods to access its properties.
+I produced a class which abstracts a QRCode and defines various methods to access the desired properties. This class was declared in a .h file and implemented in .cpp file as the standards wants, in addition, the structure of this code is designed for the developer which will use it, because after the constructor call no other parameters are needed to make the algorithm work.
+In fact, after a QRCode object is instantiated the user can directly call all \textbf{get\textunderscore{}\emph{propertyname}()} methods and use their results for its own purposes.
+
+\section{ZBar's recognition improvement} 
+Any software is perfect and considering that ZBar is just at 0.10 version at the moment indicates how far from perfection is.
+However, for our purposes, its capability to recognize QRCode was just sufficient and needed some tuning in order to be used.
+My personal contribute to this aspect of the thesis was to think and code 6 incremental steps ,which can be found in the method named searchQRCode().
+This passages consists in different elaboration on the picture made before it is sent to the ZBar's API.
+In particular, these are all different tryings that the method does:
+
+\begin{enumerate}
+	\item The basic greyscale picture taken by the camera.
+	\item An image rotated by 180 degrees\footnote{ experiments have revealed that ZBar have some problem to recognize QRCodes inclined with an angle from 180 to 360 degrees.}.
+	\item A only black and white image (called also: filter).
+	\item A rectified image\footnote{ it means that to the image was applied the rectification process.}.
+	\item A rectified and filtered image.
+	\item A rectified and rotated image.
+	\item A rectified, rotated and filtered image.
+\end{enumerate}
+
+

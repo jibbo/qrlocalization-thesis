@@ -53,6 +53,7 @@ vector<Image::SymbolIterator> QrCode::searchQrCode()
     do
     {
         rotated=false;
+        cvtColor(picture, dest, CV_BGR2GRAY);
         Mat tmp =picture.clone(),tmp2 = picture.clone();
         switch(trycont)
         {
