@@ -39,10 +39,15 @@ To simplify what was explained in the earlier paragraph the following table show
 \newpage
 
 \subsection{How QRCodes are used inside the thesis}
+
 The proposed rollator has been instrumented with a camera connected to a processing unit which is empowered with a software for QR recognition.
-All QRCodes contain a number (id) which identify univocally that exact location inside the building. In fact, the environment where the system has to work, must be analyzed in order to find spots where QRCodes can be put.
-Usually, a good point where to place a tag are on the entrance of a room or after a cross when the user begins to walk down a corridor, but those general rules can be integrated with other necessity due to environments architecture. 
-When all the QRCode positions are defined, a map containing all of them associated with the above mentioned id must be saved inside the processing unit. No methods to store this information is analyzed in this thesis, which assumes that the map is already stored. However there could be many solutions, such as a QRCode at the beginning of a floor contaning its map or maybe that this database is transfered via bluetooth or even pre-download the map of the building at home before the arrival.
+All QRCodes contain a number (id) which identify unequivocally that exact location inside the building. In fact, the environment where the system has to work, must be analyzed in order to find spots where QRCodes can be put.
+Usually, a good point where to place a tag is on the entrance of a room or after a cross when the user begins to walk down a corridor, but those general rules can be integrated with other necessity due to environments architecture. 
+When all QRCode's positions are defined, a map containing all of them associated with the above mentioned id must be saved inside the processing unit.\newline
+No methods to store this information is analyzed in this thesis, which assumes that the map is already saved. However there could be many solutions for this problem, such as a QRCode at the beginning of a floor containing its map or maybe that this database is transfered via bluetooth or even pre-downloaded at home before the arrival. No methods of QRCode's encoding is analyzed neither, because there is plenty of software available to the public which generates the needed image.
+\newline
+However, the proposed algorithm's role is to look for QRCodes inside a picture, read it and compute the QR's angle relative to the camera. Moreover, the rollator on which I worked on has an estimation of the trajectory calculated with odometry techniques. Therefore, the angle found with the algorithm is used to reduce the approximation of the trajectory and diminish the error given by the system in a future application with step by step directions but also to better know the position inside the gap between two markers.
+
 
 
 
