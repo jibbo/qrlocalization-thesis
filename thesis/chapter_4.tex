@@ -1,6 +1,6 @@
 \chapter{The algorithm}
 
-I produced a class which abstracts a QRCode and defines various methods to access the desired properties. This class was declared in a .h file and implemented in .cpp file as the standards wants, in addition, the structure of this code is designed with developers in mind. In fact after the constructor call, no other parameters are needed to make the class work and, after a QRCode object is instantiated, the user can directly call all \textbf{get\textunderscore{}\emph{propertyname}()} methods and use their results for its own purposes. However, this design, connected with the fact that the rectification algorithm requires many parameters, produced a pretty long constructor signature which is not very beautiful to see and use. Moreover, even if the code has to run on embedded devices, the rest of the code tries to stay as elegant as possible because someone else could feel the need to understand and modify it.
+I produced a class which abstracts a QRCode and defines various methods to access the desired properties such as the position of the user and its orientation. This class was declared in a .h file and implemented in .cpp file as the standards wants, in addition, the structure of this code is designed with developers in mind. In fact after the constructor call, no other parameters are needed to make the class work and, after a QRCode object is instantiated, the user can directly call all \textbf{get\textunderscore{}\emph{propertyname}()} methods and use their results for its own purposes. However, this design, connected with the fact that the rectification algorithm requires many parameters, produced a pretty long constructor signature which is not very beautiful to see and use. Moreover, even if the code has to run on embedded devices, the rest of the code tries to stay as elegant as possible because someone else could feel the need to understand and modify it.
 In addition, the codebase concerning the algorithm implementation is very small and it counts about 360 lines of code. Although, all the testing and benchmarking software required over one thousand additional lines of code.
 
 \section{Trajectory approximation reduction}
@@ -32,4 +32,20 @@ In particular, these are all different tryings that the method \textbf{searchQRC
 
 In our experiments on the last set of 220 images, ZBar alone was able to detect 142 QRCodes whilst the process lead to the recognition of 169. Moreover, the second passage helped in 8 cases, the third package in 11, the forth in 4 cases and the last passage on the other 4. In fact, we noticed that ZBar have some problem to recognize QRCodes inclined with an angle from 180 to 360 degrees.
 As can be seen, there are two problems in the process: steps five and six weren't useful and still 51 QRCodes couldn't be found. However, the first problem is there for the reason that those steps are sub-cases of the seventh try, and there is a supposition that under certain circumstances they could be helpful, instead, the reason behind the second problem was found by checking each image which showed it. Furthermore, the problem was that those markers were too far from the camera even if the photo could contain them.
+
+\section{Location retrieval}
+The retrieval of the real position of the user is very trivial, because, as it is mentioned earlier, it consists in looking for the id of the QRCode into a database or other memorization implementation.
+This memory unit contains all the locations of every marker measured by a man (or maybe robots, in a future!) and the uncertainty is clearly the lowest possible.
+% Imaging the memory structured as cells, an example of the resulting table could be as follows:
+% \vspace{1cm}
+% \begin{center}
+%   \begin{tabular}{ | l | l | l | l |}
+%     \hline
+%     id & name & pos\textunderscore x & pos\textunderscore y \\ \hline
+%     0 & bathroom & 15302 & 7789 \\ \hline
+%     1 & kitchen & 12504 & 7888 \\ \hline
+%     3 & living room & 17821 & 7123 \\ \hline
+%     4 & bedroom & 16711 & 7123 \\ \hline
+%   \end{tabular}
+% \end{center}
 
