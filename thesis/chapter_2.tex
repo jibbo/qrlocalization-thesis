@@ -1,6 +1,6 @@
 \chapter{General problem description}
 
-Indoor tracking is a very complex matter because the common GPS system is unavailable due to the fact that satellite signals are often absent or very imprecise inside buildings. From that very fact came the need to research other resources that could provide the location. In fact, many research labs and companies are developing solutions based on Wi-Fi signals triangulation although this kind of systems are too imprecise for our purpose due too many facts, such as: signal loss, latency, continuous connect and disconnect from a range of Wi-Fi hotspots in order to measure the signal intensity.
+Indoor tracking is a very complex matter because the common GPS system is unavailable due to the fact that satellite signals are often absent or very imprecise inside buildings. From that very fact came the need to research other resources that could provide the location. In fact, many research labs and companies are developing solutions based on Wi-Fi signals triangulation although this kind of systems are too imprecise\cite{wifiimprecise} for our purpose due too many facts, such as: signal loss, latency, continuous connect and disconnect from a range of Wi-Fi hotspots in order to measure the signal intensity.
 Therefore, a wireless solution will impact the autonomy of the device and the installation of Wi-Fi repetitors might be a burden for the final user.
 A marker, which is basically a symbol, avoids all those problems although it brings another level of complexity by introducing other matters, such as: how to recognize the symbol, how to read the data, quantity of information that can be stored, where it should stand, etc.
 There are several computer readable markers available on the market and the team decided to make a comparison between them before choosing one.
@@ -9,7 +9,7 @@ This solution made use of a carpet consisting in RFID passive tags which contain
 The lack of this knowledge could be mitigated with other external resources but the solution proposed is not affected by this problem. 
 
 
-\subsection{QRCode quick generalities}
+\section{QRCode quick generalities}
 
 A QRCode is an image containing an encoded binary matrix of data which looks similar to the one in figure \ref{qr} and it allows the storage of alphanumerical, numerical only, binary and kanji kind of information.
 This markers are patented by DENSO WAVE INCORPORATED which invented thme, but the company choose to not exercise its right.
@@ -38,7 +38,7 @@ To simplify what was explained in the earlier paragraph the following table show
 
 \newpage
 
-\subsection{How QRCodes are used inside the thesis}
+\section{How QRCodes are used inside the thesis}
 
 The proposed rollator has been instrumented with a camera connected to a processing unit which is empowered with a software for QR recognition.
 All QRCodes contain a number (id) which identify unequivocally that exact location inside the building. In fact, the environment where the system has to work, must be analyzed in order to find spots where QRCodes can be put.
