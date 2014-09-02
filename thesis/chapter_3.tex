@@ -24,10 +24,10 @@ However, every GNU/Linux distribution which runs a version of the kernel later t
 In order to stream videos or take pictures a Playstation 3 Eye was used.
 This camera can operate at 120Hz with a resolution of 320x240 pixels but we, instead, preferred to operate at 640x480 pixels with a frequency of 60Hz because of the better resolution of the image which grants also better working possibilities. 
 This camera was preferred because of its ability to stream uncompressed video directly \cite{pseyecompr} and for its higher resolution compared to other avilable webcams.
-
+\vspace{0.5cm}
 \begin{figure}[hbt]
     \centering
-    \includegraphics[scale=0.5]{img/pseye.png}
+    \includegraphics[scale=0.9]{img/pseye.png}
     \caption{The Playstation Eye.}
 \end{figure}
  
@@ -67,9 +67,10 @@ The whole code is free-software because it is licensed with MPLv2 which guarante
 This library is actually used by the rectification algorithm (which is explained below) for its incredible matrix utilities.
 \newline Used version: \textbf{3.2.1}.
 
+\section{Algorithm}
 \subsection{Rectification Algorithm}
 The rectification process is able to remove perspective and correct distortion from a given picture.
-It uses rototranslation and the focal length of the camera. The resulting image contains every pixel from the initial photo minus pixels which goes out of bounds. The usage of this algorithm is needed to correct the fact of the web cam which is positioned at a certain height and it is inclined with a certain angle towards the ground\footnote{see \textbf{chapter 5} for more information}. Therefore, any calculation about the orientation of an already read QRCode would be incorrect without a process which transform the image in a 2D Cartesian plane. In addition, our experiments showed that in certain circumstances the rectification algorithm also aids ZBar to recognize QRCodes\footnote{see \textbf{chapter 4}  for further information}. 
+It uses rototranslation and the focal length of the camera. The resulting image contains every pixel from the initial photo minus pixels which goes out of bounds. The usage of this algorithm is needed to correct the fact of the web cam which is positioned at a certain height and it is inclined with a certain angle towards the ground\footnote{see \textbf{chapter 5} for more information}. Therefore, any calculation about the orientation of an already read QRCode would be incorrect without a process which transform the image in a 2D Cartesian plane. In addition, our experiments showed that in certain circumstances the rectification algorithm also aids ZBar to recognize QRCodes\footnote{see \textbf{chapter 4}  for further information}. This code was provided by one of by supervisor: Federico Moro. 
 \vspace{1.25cm}
 \begin{figure}[hbt]
     \centering
