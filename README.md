@@ -7,7 +7,7 @@ To compile the source:
 ----------------------
 
 You'll need **opencv**,**zbar** and **eigen3**<br />
-Then, the Makefile should do the rest.
+Then, the compile.sh should do the rest.
 
 How To-use it:
 --------------
